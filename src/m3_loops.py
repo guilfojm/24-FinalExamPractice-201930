@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Justin Guilfoyle.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -46,7 +46,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ###########################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -136,6 +136,19 @@ def run_test_practice_problem3():
     #             that they are adequate tests!
     ###########################################################################
 
+    expected = [0, 1, 2]
+    actual = practice_problem3(-2, 3, 0)
+
+    print()
+    print('expected:',   expected)
+    print('actual:',    actual)
+
+    expected = [7, 13]
+    actual = practice_problem3(2, 2, 1)
+
+    print()
+    print('expected:',   expected)
+    print('actual:',    actual)
 
 def practice_problem3(start, n, threshold):
     """
@@ -209,7 +222,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ###########################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ###########################################################################
@@ -217,6 +230,12 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ###########################################################################
+    numbers = []
+    for k in range(start, 99999999999999):
+        if math.sin(k) + math.cos(k) > threshold:
+            numbers += [k]
+            if len(numbers) == n:
+                return numbers
 
 
 # -----------------------------------------------------------------------------
