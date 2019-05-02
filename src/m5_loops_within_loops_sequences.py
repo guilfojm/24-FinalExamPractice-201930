@@ -167,14 +167,14 @@ def run_test_big_letters():
                           'D',  # D
                           'OOps'  # OO
                           ])
-    print('Expected is:', expected)
-    print('Actual is:  ', answer)
-
-    expected = 'HELLOHAYOOOO'
-    actual = big_letters([('HELLO'), ('How Are You'), (3, 4, 5), ('okay'), ('OOOO'), (7737373)])
-
-    print('Expected:',  expected)
-    print('Actual:',    actual)
+    # print('Expected is:', expected)
+    # print('Actual is:  ', answer)
+    #
+    # expected = 'HELLOHAYOOOO'
+    # actual = big_letters([('HELLO'), ('How Are You'), (3, 4, 5), ('okay'), ('OOOO'), (7737373)])
+    #
+    # print('Expected:',  expected)
+    # print('Actual:',    actual)
 
 def big_letters(sequence_of_sequences):
     """
