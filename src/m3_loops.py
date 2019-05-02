@@ -232,10 +232,13 @@ def practice_problem3(start, n, threshold):
     ###########################################################################
     numbers = []
     for k in range(start, 99999999999999):
+        if abs(threshold) > 2:
+            return []
         if math.sin(k) + math.cos(k) > threshold:
             numbers += [k]
             if len(numbers) == n:
                 return numbers
+
 
 
 # -----------------------------------------------------------------------------

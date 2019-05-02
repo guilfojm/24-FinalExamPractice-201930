@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Justin Guilfoyle.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -39,7 +39,7 @@ def main():
 def run_test_integers():
     """ Tests the    integers    function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  integers  function defined below.
     #   Include at least ** 1 ** ADDITIONAL test beyond those we wrote.
     #
@@ -69,6 +69,11 @@ def run_test_integers():
                        [[55], [44]],
                        [30, -4]
                        ])
+    print('Expected is:', expected)
+    print('Actual is:  ', answer)
+
+    expected = [3, 5, 3, 2, 5, 7]
+    answer = integers([(3, 5, 3), (2, 5, 7), '3', []])
     print('Expected is:', expected)
     print('Actual is:  ', answer)
 
@@ -119,7 +124,8 @@ def integers(sequence_of_sequences):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:  10 minutes.
     # -------------------------------------------------------------------------
-
+    for k in range(len(sequence_of_sequences)):
+        
 
 def run_test_big_letters():
     """ Tests the    big_letters    function. """
