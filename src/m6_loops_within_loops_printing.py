@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Justin Guilfoyle.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -88,6 +88,14 @@ def shape(r):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:  15 minutes.
     # -------------------------------------------------------------------------
+    list = []
+    for k in range(r):
+        list += ['+']
+    list += ['!']
+    for j in range(r):
+        list += [r]
+        r = r - 1
+    print(list)
 
 
 # -----------------------------------------------------------------------------
