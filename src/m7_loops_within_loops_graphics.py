@@ -1,9 +1,7 @@
 """
 PRACTICE Exam 3.
-
 This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
-
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
          and Justin Guilfoyle.
@@ -30,6 +28,7 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
 ###############################################################################
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -64,11 +63,20 @@ def run_test_hourglass():
     window2.close_on_mouse_click()
 
 
+def circle_line(x, y, radius, color, window):
+    circle = rg.Circle(rg.Point(x, y), radius)
+    circle.fill_color = color
+    circle.attach_to(window)
+    window.render()
+
+    line = rg.Line(rg.Point(x - radius, y), rg.Point(x + radius, y))
+    line.attach_to(window)
+    window.render()
+
 def hourglass(window, n, point, radius, color):
     """
     See   hourglass_picture.pdf   in this project for pictures that may
     help you better understand the following specification:
-
     Displays an "hourglass" shape of circles in the given window.
       -- Each circle has the given radius and given color.
       -- Each circle has a horizontal line drawn through it.
@@ -79,7 +87,6 @@ def hourglass(window, n, point, radius, color):
       -- There are n rows (including the middlemost row)
            of circles going DOWN from the middlemost circle.
       -- Each circle barely touches its neighbor circles.
-
     Preconditions:
       :type window: rg.RoseWindow
       :type n: int
@@ -90,7 +97,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -102,10 +109,45 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+
+   #See circle_line fuction above hourglass function
+    x = point.x
+    y = point.y
+
+    ogx = point.x
+    ogy = point.y
+
+    dy = math.sqrt((2*radius)**2 - (radius ** 2))
+    dx = 2*radius
+
     for k in range(n):
-        new_y = point.y + 2 * radius
-        new_x = point.x + radius
-        new_x2 = point.x - radius
+        circle_line(x,y,radius,color,window)
+        x = ogx
+        y = ogy
+        y -= dy * (k)
+        x -= (k)*radius
+        startx = x + dx
+
+        for j in range(k):
+            circle_line(x,y,radius,color,window)
+            x = startx
+            x += (j) * dx
+            circle_line(x,y,radius,color,window)
+
+
+    for k in range(n):
+        circle_line(x,y,radius,color,window)
+        x = ogx
+        y = ogy
+        y += dy * (k)
+        x -= (k)*radius
+        startx = x + dx
+
+        for j in range(k):
+            circle_line(x,y,radius,color,window)
+            x = startx
+            x += (j) * dx
+            circle_line(x,y,radius,color,window)
 
 
 
@@ -146,7 +188,6 @@ def many_hourglasses(window, square, m, colors):
     """
     See   many_hourglasses_picture.pdf   in this project for pictures that may
     help you better understand the following specification:
-
     Displays  m  rectangles, where:
       -- Each rectangle has an hourglass of circles inside it,
            per the  hourglass  function above.
@@ -159,7 +200,6 @@ def many_hourglasses(window, square, m, colors):
            for the previous rectangle.
       -- The colors for the hourglass figures use the given sequence of
            colors, "wrapping" if m exceeds the length of the sequence.
-
     Preconditions:
       :type window: rg.RoseWindow
       :type square: rg.Square
@@ -169,7 +209,7 @@ def many_hourglasses(window, square, m, colors):
     each of which denotes a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -185,6 +225,42 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+
+    side = square.length_of_each_side
+    radius = (0.5*square.length_of_each_side)
+    dy = math.sqrt((2*radius)**2 - (radius ** 2))
+
+    ux = square.center.x - (0.5*square.length_of_each_side)
+    uy = square.center.y - (0.5*square.length_of_each_side)
+
+    lx = square.center.x + (0.5 * square.length_of_each_side)
+    ly = square.center.y + (0.5 * square.length_of_each_side)
+
+    cx = square.center.x
+    cy = square.center.y
+
+    num = 0
+
+    for k in range(m):
+        if num >= len(colors):
+            num = 0
+            print('hello')
+        rectangle = rg.Rectangle(rg.Point(ux,uy),rg.Point(lx,ly))
+        hourglass(window,k+1,rg.Point(cx,cy),radius,colors[num])
+        rectangle.attach_to(window)
+        window.render()
+        num += 1
+
+        ux -= radius
+        uy -= dy
+        lx += radius
+        ly += dy
+
+        ux += side*(k+1) + 0.5 * side
+        lx += side*(k+1) + 0.5 * side
+
+        cx = (lx + ux)/2
+
 
 
 # -----------------------------------------------------------------------------
